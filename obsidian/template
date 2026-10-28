@@ -1,0 +1,34 @@
+# Template file for 'obsidian'
+pkgname=obsidian
+version=1.14.5
+revision=1
+archs="x86_64"
+depends="hicolor-icon-theme libsecret xdg-utils"
+short_desc="Knowledge base that works on top of local Markdown files"
+maintainer="gluow3377 <344402541+gluow3377@users.noreply.github.com>"
+license="custom:Proprietary"
+homepage="https://obsidian.md"
+changelog="https://obsidian.md/changelog/"
+distfiles="https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}.tar.gz"
+checksum=1bc6547c889d7d02c3f2c5b55884cba14980bfac4ada32c0bdc6ec6db542aaf8
+restricted=yes
+repository=nonfree
+nostrip=yes
+noshlibprovides=yes
+
+do_install() {
+	vmkdir usr/lib/obsidian
+	vcopy "*" usr/lib/obsidian
+	rm ${DESTDIR}/usr/lib/obsidian/LICENSE*
+
+	vbin ${FILESDIR}/obsidian.sh obsidian
+	ln -s /usr/lib/obsidian/obsidian-cli ${DESTDIR}/usr/bin/obsidian-cli
+
+	vinstall ${FILESDIR}/md.obsidian.Obsidian.desktop 644 usr/share/applications
+	vinstall ${FILESDIR}/obsidian.xml 644 usr/share/mime/packages
+	vinstall resources/icon.png 644 usr/share/icons/hicolor/512x512/apps obsidian.png
+
+	vlicense ${FILESDIR}/LICENSE
+	vlicense LICENSE.electron.txt
+	vlicense LICENSES.chromium.html
+}
