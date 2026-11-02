@@ -1,6 +1,6 @@
 # Template file for 'noctalia'
 pkgname=noctalia
-version=5.3.0
+version=5.4.1
 revision=1
 archs="x86_64"
 build_style=meson
@@ -21,7 +21,7 @@ license="MIT AND Apache-2.0"
 homepage="https://github.com/noctalia-dev/noctalia"
 changelog="https://github.com/noctalia-dev/noctalia/releases"
 distfiles="${homepage}/archive/refs/tags/v${version}.tar.gz"
-checksum=7677b5d7da80cf89c7a8232de26d25380aa5fcaf34fb38abddd4fe7cb676161a
+checksum=6069d922e9d72488c74e4ce335314ce2203f08bd4641380bfe1bd137004597fa
 
 if [ "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -Dtests=enabled"
